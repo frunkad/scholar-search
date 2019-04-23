@@ -2,8 +2,10 @@ import flask
 from flask import request, jsonify
 import scholarly_modified as scholarly
 import requests
+from flask_cors import CORS
 
 app = flask.Flask(__name__)
+CORS(app)
 # app.config["DEBUG"] = True
 
 @app.route('/', methods=['GET'])
@@ -12,7 +14,7 @@ def home():
         query = request.args['q']
         search_query = scholarly.search_pubs_query(query)
         result = []
-        for i in range(10):
+        for _ in range(10):
             articlex = next(search_query)
             if not articlex:
                 break

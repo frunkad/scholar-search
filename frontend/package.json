@@ -1,0 +1,10 @@
+{
+  "name": "scholar-search",
+  "version": "1.0.0",
+  "description": "Scholar Search Web App",
+  "main": "index.js",
+  "repository": "https://github.com/frunkad/scholar-search.git",
+  "author": "Darshan Baid (hey@darshanbaid.com)",
+  "license": "MIT",
+  "private": true,
+}

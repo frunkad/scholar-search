@@ -1,0 +1,28 @@
+body, html, *{
+    margin: 0;
+    padding: 0;
+    --primary-color: #24C916;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+  }
+  .top-bar {
+    width: 100vw;
+    height: 30px;
+    background-color: var(--primary-color);
+  }
+  .card-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-family: 'EB Garamond', serif;
+  }
+  .card-text {
+      font-size: 14px;
+      font-family: 'Montserrat', sans-serif;
+  }
+  .author-name {
+    font-weight: 800;
+  }
+  .card-title > a, .card-title > a:focus, .card-title > a:hover{
+      color: var(--primary-color);
+      text-decoration: none;
+  }

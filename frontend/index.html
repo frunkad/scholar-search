@@ -15,38 +15,111 @@
 <body>
     <div class="top-bar mb-3"></div>
     <div class="container" id="app">
+
+        <div v-if="!results">
+            <h1 class="main-h text-center">Scholar Search</h1>
+            <p class="text-center">Aute do mollit dolore elit magna ea qui sit nulla dolor esse eu est quis. Magna
+                tempor aliqua consequat ullamco nisi. Nulla esse minim eu do. Officia amet exercitation nisi do pariatur
+                fugiat dolore et excepteur pariatur nostrud cillum. Dolore esse nisi et ipsum laborum voluptate elit
+                cillum. Veniam ullamco nulla do amet consectetur dolore magna est do laboris tempor ullamco duis sit.
+                Veniam officia incididunt sint commodo commodo voluptate qui laboris.</p>
+        </div>
         <div class="row align-items-center">
             <div class="col-12">
                 <form id="search-form" @submit.prevent="processForm">
-                <div class="input-group mb-3" id="search-app">
-                    <input type="text" v-model="query" class="form-control" placeholder="Search" aria-label="Search"
-                        aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                    <div class="input-group mb-3" id="search-app">
+                        <input type="text" v-model="query" class="form-control" placeholder="Search" aria-label="Search"
+                            aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
             </div>
         </div>
-        <div class="row justify-content-around" >
-            <div class="col-5 mb-3 card shadow" v-for="article in results" >
+        <div class="row justify-content-around">
+            <div class="col-5 mb-3 card shadow artx" v-for="article in results"
+                v-bind:class="'animated fadeInUp delay-'+article.index">
                 <div class="card-body">
                     <h3 class="card-title"><a target="_blank" v-bind:href="article.url">{{ article.title }}</a></h3>
                     <p class="card-text">
                         {{ article.abstract }}
                     </p>
+                    <p class="text-muted">Cited by <b>{{ article.citedby }} articles</b></p>
                     <div class="d-flex justify-content-between">
                         <div class="text-left author-name">
                             {{ article.author }}
                         </div>
                         <div class="text-right">
-                            <i class="fas fa-search"></i>
-                            <i class="far fa-file-pdf"></i>
+                            <a class="a-icon mx-1" v-if="article.url" v-bind:href="article.url" target="_blank"
+                                alt="quote this article"><i class="fas fa-quote-right"></i></a>
+                            <a class="a-icon mx-1" v-if="article.pdf" v-bind:href="article.pdf" target="_blank"
+                                alt="quote this article"><i class="far fa-file-pdf"></i></a>
                         </div>
                     </div>
 
                 </div>
             </div>
+        </div>
+        <div v-if="searching" class="col-4 mx-auto">
+            Searching...
+        </div>
+        <div v-if="!results" class="row">
+            <div class="col-4 card  border-0">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="https://www.sciencedirect.com/science/article/pii/S2090123219300773" target="_blank">
+                            Carbon based <b>nanomaterials</b> for tissue engineering of bone: Building new bone on small black
+                            scaffolds
+                        </a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-4 card  border-0">
+                <div class="card-body">
+                    <h4 class="card-title"><a href="https://www.sciencedirect.com/science/article/pii/S2090123219300773"
+                            target="_blank">
+                            Realization of <b>fractional-order capacitor</b> based on passive symmetric network
+
+                        </a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-4 card  border-0">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="https://www.sciencedirect.com/science/article/pii/S2090123219300773" target="_blank">
+                            <b>Gaussian mixture model</b> for texture characterization with application to brain DTI images
+                        </a> </h4>
+                </div>
+            </div>
+            <div class="col-4 card  border-0">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="https://www.sciencedirect.com/science/article/pii/S2090123219300773" target="_blank">
+                            <b>Neural Network</b> Ensembles, Cross
+                            Validation, and Active Learning
+                        </a> </h4>
+                </div>
+            </div>
+            <div class="col-4 card  border-0">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="https://www.sciencedirect.com/science/article/pii/S2090123219300773" target="_blank">
+                            A planning approach for the network configuration of <b>AC-DC hybrid distribution</b> systems
+                        </a> </h4>
+                </div>
+            </div>
+            <div class="col-4 card  border-0">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="https://www.sciencedirect.com/science/article/pii/S2090123219300773" target="_blank">
+                            DNA methylation-based <b>biomarkers</b> and the epigenetic clock theory of ageing
+
+                        </a> </h4>
+                </div>
+            </div>
+
         </div>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

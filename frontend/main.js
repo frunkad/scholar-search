@@ -77,17 +77,21 @@ var app = new Vue({
     el: '#app',
     data () {
         return {
-            results: null,
+            results: false,
+            searching: false,
             query: ''
         }
     },
     methods: {
         processForm: function() {
           console.log({ query: this.query });
+          this.searching = true;
+          this.results = true;
           axios
             .get('http://127.0.0.1:5042?q='+this.query)
             .then(response => {
                 console.log(response);
+                this.searching = false;
                 this.results = response.data;
                 return response;
             })

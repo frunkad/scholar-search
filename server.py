@@ -14,7 +14,7 @@ def home():
         query = request.args['q']
         search_query = scholarly.search_pubs_query(query)
         result = []
-        for _ in range(10):
+        for i in range(10):
             articlex = next(search_query)
             if not articlex:
                 break
@@ -24,7 +24,9 @@ def home():
                 'author':  filtr('author'),
                 'title': filtr('title'),
                 'url': filtr('url'),
-                'pdf': filtr('eprint')
+                'pdf': filtr('eprint'),
+                'citedby': articlex.citedby,
+                'index': i
             }
 
             result.append(article)
